@@ -8,7 +8,9 @@ const app = express();
 
 const CLIENT_KEY = "tt0k69d3gk2eqbzc"; // substitua pelo seu client_key
 const CLIENT_SECRET = "TXgUVVmyLpOgLAmfLq7l014l6c5Qo0bw"; // seu client_secret
-const REDIRECT_URI = "http://localhost:3000/callback";
+const REDIRECT_URI = "https://tiktok-cleaner.onrender.com/callback";
+
+
 
 let accessToken = null;
 let userInfo = null;
