@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bem-vindo</title>
+</head>
+<body>
+  <h1>Bem-vindo, <%= user.display_name %></h1>
+  <button id="removeBtn">Remover republicados</button>
+  <div id="status"></div>
+
+  <script>
+    const btn = document.getElementById("removeBtn");
+    const statusDiv = document.getElementById("status");
+
+    btn.onclick = async () => {
+      btn.disabled = true;
+      statusDiv.innerText = "Iniciando...";
+
+      await fetch("/start-removal", { method: "POST" });
+
+      const interval = setInterval(async () => {
+        const res = await fetch("/status");
+        const data = await res.json();
+
+        statusDiv.innerText = `Removidos ${data.removed} de ${data.total}`;
+
+        if (!data.running) {
+          clearInterval(interval);
+          statusDiv.innerText += " - Finalizado!";
+          btn.disabled = false;
+        }
+      }, 1000);
+    };
+  </script>
+</body>
+</html>
