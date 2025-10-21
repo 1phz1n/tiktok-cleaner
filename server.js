@@ -19,6 +19,8 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, "public")));
+
 
 app.get("/", (req, res) => {
   res.render("index", { clientKey: CLIENT_KEY, redirectUri: REDIRECT_URI });
@@ -95,7 +97,10 @@ app.get("/status", (req, res) => {
   res.json(removalStatus);
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
+
+
+//testete
