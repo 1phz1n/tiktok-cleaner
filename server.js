@@ -46,7 +46,7 @@ app.get("/callback", async (req, res) => {
         },
       }
     );
-
+//ere
     accessToken = tokenResponse.data.access_token;
 
     const userRes = await axios.get("https://open.tiktokapis.com/v2/user/info/", {
